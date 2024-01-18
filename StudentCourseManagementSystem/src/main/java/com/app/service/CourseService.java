@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.dao.CourseDao;
 import com.app.models.Course;
+import com.app.models.Student;
 
 @Service
 @Transactional
@@ -18,10 +19,15 @@ public class CourseService {
 	private CourseDao courseDao;
 	
 	public List<Course> getAllCourses() {
-		// TODO Auto-generated method stub
 		return courseDao.findAll();
 	}
 	public Course insertCourse(Course course) {
 		return courseDao.save(course); 
+	}
+	public List<Student> getStudentsByCourse(String courseName) {
+		return courseDao.findByCourseTitle(courseName);
+	}
+	public List<Student> getStudentsByCourseId(int courseId){
+		return courseDao.findById(courseId);
 	}
 }
