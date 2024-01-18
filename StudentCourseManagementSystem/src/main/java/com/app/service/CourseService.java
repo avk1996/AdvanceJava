@@ -21,5 +21,7 @@ public class CourseService {
 		// TODO Auto-generated method stub
 		return courseDao.findAll();
 	}
-	
+	public Course insertCourse(Course course) {
+		return courseDao.save(course); 
+	}
 }

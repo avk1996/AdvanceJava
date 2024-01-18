@@ -29,9 +29,8 @@ public class StudentController {
 
 	@PostMapping
 	public Student insertStudent(@RequestBody Student student) {
+		System.out.println(student.toString());
 		return studentService.insertStudent(student);
 	}
-	
-	
 
 }
