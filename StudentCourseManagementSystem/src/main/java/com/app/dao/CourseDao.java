@@ -9,6 +9,6 @@ import com.app.models.Student;
 
 public interface CourseDao extends JpaRepository<Course, Integer>{
 
-	List<Student> findByCourseTitle(String courseName);
-	List<Student> findById(int courseId);
+//	List<Student> findByCourseTitle(String courseName);
+	Course findById(int courseId);
 }

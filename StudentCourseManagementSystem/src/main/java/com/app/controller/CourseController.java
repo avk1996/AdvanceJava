@@ -30,17 +30,17 @@ public class CourseController {
 	}
 	
 	@PostMapping
-	public Course insertCourse(@RequestBody Course course) {
-		return courseService.insertCourse(course);
+	public Course addCourse(@RequestBody Course course) {
+		return courseService.addCourse(course);
 	}
 	
-	@GetMapping("/{courseName}")
-	public List<Student> getStudentsByCourse(@PathVariable String courseName) {
-		return courseService.getStudentsByCourse(courseName);
-	}
-	
-	@GetMapping("/{courseId}")
-	public List<Student> getStudentsByCourseId(@PathVariable int courseId){
-		return courseService.getStudentsByCourseId(courseId);
-	}
+//	@GetMapping("/{courseName}")
+//	public List<Student> getStudentsByCourse(@PathVariable String courseName) {
+//		return courseService.getStudentsByCourse(courseName);
+//	}
+//	
+//	@GetMapping("/{courseId}")
+//	public List<Student> getStudentsByCourseId(@PathVariable int courseId){
+//		return courseService.getStudentsByCourseId(courseId);
+//	}
 }

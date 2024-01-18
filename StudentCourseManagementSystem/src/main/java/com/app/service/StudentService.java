@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dao.StudentDao;
+import com.app.dto.StudentDto;
 import com.app.models.Course;
 import com.app.models.Student;
 
@@ -16,17 +17,50 @@ import lombok.RequiredArgsConstructor;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class StudentService{
+public class StudentService {
 
 	@Autowired
 	private StudentDao studentDao;
-	
-	public List<Student> getAllStudents(){
+	@Autowired
+	private CourseService courseService;
+
+	public List<Student> getAllStudents() {
 		return studentDao.findAll();
 	}
-	
-	public Student insertStudent(Student student) {
-		return studentDao.save(student);
+
+	public void insertStudent(StudentDto studentDto) {
+
+		int courseId = studentDto.getCourseId();
+		Student student = new Student();
+		Course course = courseService.getCourseById(courseId);
+		
+		List<Course> courses = courseService.getAllCourses();
+		
+		for (Course courseList : courses) {
+			if (courseId == courseList.getId()) 
+			{
+				if (student.getScore() >= course.getMinScore()) 
+				{
+					student.setFirstName(studentDto.getFirstName());
+					student.setLastName(studentDto.getLastName());
+					student.setScore(studentDto.getScore());
+					student.setEmail(studentDto.getEmail());
+					student.setCourse(course);
+					
+					studentDao.save(student);
+				} 
+				else 
+				{
+					throw new RuntimeException("Not eligible for this course");
+				}
+			} 
+			else 
+			{
+				throw new RuntimeException("Given course does not exits!");
+			}
+		}		
+		
+		
 	}
 
 }

@@ -21,13 +21,17 @@ public class CourseService {
 	public List<Course> getAllCourses() {
 		return courseDao.findAll();
 	}
-	public Course insertCourse(Course course) {
+	public Course addCourse(Course course) {
 		return courseDao.save(course); 
 	}
-	public List<Student> getStudentsByCourse(String courseName) {
-		return courseDao.findByCourseTitle(courseName);
-	}
-	public List<Student> getStudentsByCourseId(int courseId){
+//	public List<Student> getStudentsByCourse(String courseName) {
+//		return courseDao.findByCourseTitle(courseName);
+//	}
+//	public List<Student> getStudentsByCourseId(int courseId){
+//		return courseDao.findById(courseId);
+//	}
+//	
+	public Course getCourseById(int courseId) {
 		return courseDao.findById(courseId);
 	}
 }
