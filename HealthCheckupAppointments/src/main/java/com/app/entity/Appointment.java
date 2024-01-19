@@ -11,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,6 +39,44 @@ public class Appointment {
 	private LocalDate appointmentDate;
 	
 	@Column(name="appointment_time")
-	private LocalTime appointmentTime;
+	private String appointmentTime;
 	//hour:minute:seconds
+
+	public String getPaitentsName() {
+		return paitentsName;
+	}
+
+	public void setPaitentsName(String paitentsName) {
+		this.paitentsName = paitentsName;
+	}
+
+	public int getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(int doctor) {
+		this.doctor = doctor;
+	}
+
+	public LocalDate getAppointmentDate() {
+		return appointmentDate;
+	}
+
+	public void setAppointmentDate(LocalDate appointmentDate) {
+		this.appointmentDate = appointmentDate;
+	}
+
+	public String getAppointmentTime() {
+		return appointmentTime;
+	}
+
+	public void setAppointmentTime(String appointmentTime) {
+		this.appointmentTime = appointmentTime;
+	}
+
+	public Long getId() {
+		return id;
+	}
+	
+	
 }
