@@ -1,5 +1,7 @@
 package com.app.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +21,13 @@ public class AppointmentService {
 		appointmentRepo.save(appointment);
 		return "Appointment added successfully";
 	}
+	
+	public void cancleAppointment(Long id) {
+		appointmentRepo.deleteById(id);
+	}
 
+	public List<Appointment> getAllAppointments() {
+		// TODO Auto-generated method stub
+		return appointmentRepo.findAll();
+	}
 }
