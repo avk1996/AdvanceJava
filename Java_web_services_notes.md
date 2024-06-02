@@ -31,3 +31,17 @@ for mapping XML schema with java objects.
 1. Marshall
 2. UNMarshall
 3. Annotation
+
+## How to add JSON support
+
+1. Jackson Dependency third-party is a open-source library which specialize in serialize and de-serialize of java objects
+2. Add Jackson Dependencies:
+    
+    2.1 jackson-jaxrs
+
+    2.2 jackson-xc
+3. Change the configuration
+
+    @Consumes & @Produces
+
+
