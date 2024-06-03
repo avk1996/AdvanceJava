@@ -7,6 +7,7 @@ import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieFileSystem;
 import org.kie.api.builder.KieModule;
 import org.kie.api.builder.KieRepository;
+import org.kie.api.builder.Message.Level;
 import org.kie.api.builder.ReleaseId;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
@@ -21,7 +22,7 @@ public class DroolsConfig {
 
 	private KieFileSystem getKieFileSystem() throws IOException {
 		KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
-		kieFileSystem.write(ResourceFactory.newClassPathResource("offer.drl"));
+		kieFileSystem.write(ResourceFactory.newClassPathResource("src/main/resources/offer.drl"));
 		return kieFileSystem;
 
 	}
@@ -32,6 +33,14 @@ public class DroolsConfig {
 		getKieRepository();
 		KieBuilder kb = kieServices.newKieBuilder(getKieFileSystem());
 		kb.buildAll();
+		
+		if (kb.getResults().hasMessages(Level.ERROR)) {
+            throw new IllegalStateException("Error in Drools rule compilation: " + kb.getResults().toString());
+        }
+		else {
+			System.out.println("~~~~~~~~~~~~~~~~~~NO ERROR~~~~~~~~~~~~~~~~~~~~~");
+		}
+		
 		KieModule kieModule = kb.getKieModule();
 		KieContainer kContainer = kieServices.newKieContainer(kieModule.getReleaseId());
 		return kContainer;

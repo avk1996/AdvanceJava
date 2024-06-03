@@ -12,12 +12,12 @@ import com.app.drools.entity.Order;
 public class MegaOfferController {
 
 	@Autowired
-	private KieSession kieSession;
+	private KieSession session;
 
 	@PostMapping("/order")
 	public Order orderNow(@RequestBody Order order) {
-		kieSession.insert(order);
-		kieSession.fireAllRules();
+		session.insert(order);
+		session.fireAllRules();
 		return order;
 	}
 }
