@@ -20,11 +20,16 @@ import lombok.ToString;
 @Entity
 @ToString
 public class Student {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Getter
 	@Setter
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Getter
+	@Setter
+	@Column(name = "student_code")
+	private int studentCode;
 
 	@Column(name = "student_name")
 	@Getter
@@ -33,6 +38,7 @@ public class Student {
 
 	@Column(name = "date_of_birth")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	@Getter
 	private LocalDate dateOfBirth;
 
 	@Column
